@@ -42,7 +42,7 @@ spec:
     tier: backend
     project: expense
   ports:
-  - name: mysql-port
+  - name: backend-port
     protocol: TCP
     port: 8080 # service port
     targetPort: 8080 # container port
