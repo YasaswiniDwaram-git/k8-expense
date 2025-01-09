@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: backend
+  namespace: expense
+data:
+  DB_HOST: mysql
+
+---
+kind: Deployment
+metadata: 
+  name: backend
+  namespace: expense
+  labels:
+    tier: backend
+    project: expense
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: backend
+      project: expense
+  template:
+    metadata:
+      name: backend
+      labels:
+        tier: backend
+        project: expense
+    spec:
+      containers:
+        - name: backend
+          image: yashdwar/backend:v2
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: backend-port
+  namespace: expense
+spec:
+  selector:
+    tier: backend
+    project: expense
+  ports:
+  - name: mysql-port
+    protocol: TCP
+    port: 8080 # service port
+    targetPort: 8080 # container port
