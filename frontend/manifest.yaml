@@ -27,8 +27,8 @@ spec:
           image: yashdwar/frontend:v2
 ---
 kind: Service
-type: LoadBalancer
 apiVersion: v1
+type: LoadBalancer
 metadata:
   name: frontend
   namespace: expense
