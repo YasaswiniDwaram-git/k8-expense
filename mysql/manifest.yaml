@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+namespace: expense
+metadata:
+  name: mysql
+  labels:
+    tier: api
+    component: db
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: api
+      project: db
+  template:
+    metadata:
+      labels:
+        tier: api
+        component: db
+    spec:
+      containers:
+      - name: mysql
+        image: yashdwar/mysql:v1
+      
+
