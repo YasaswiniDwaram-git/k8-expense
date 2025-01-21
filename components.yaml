@@ -107,7 +107,7 @@ spec:
   - name: https
     port: 443
     protocol: TCP
-    targetPort: https
+    targetPort: 10250
   selector:
     k8s-app: metrics-server
 ---
@@ -124,7 +124,7 @@ spec:
       k8s-app: metrics-server
   strategy:
     rollingUpdate:
-      maxUnavailable: 0
+      maxUnavailable: 1
   template:
     metadata:
       labels:
