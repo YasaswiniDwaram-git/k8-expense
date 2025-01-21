@@ -31,6 +31,13 @@ spec:
       containers:
         - name: backend
           image: yashdwar/backend:v2
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
 ---
 kind: Service
 apiVersion: v1
