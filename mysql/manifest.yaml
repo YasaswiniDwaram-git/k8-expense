@@ -21,6 +21,16 @@ spec:
       containers:
       - name: mysql
         image: yashdwar/mysql:v2
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15 #initial delay
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 10 #it checks every 10 sec 
 ---
 kind: Service
 apiVersion: v1
