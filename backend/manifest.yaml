@@ -28,6 +28,10 @@ spec:
         tier: backend
         project: expense
     spec:
+      initContainers:
+      - name: init-mysql
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup mysql; do echo waiting for mysql; sleep 2; done"]
       containers:
         - name: backend
           image: yashdwar/backend:v2
