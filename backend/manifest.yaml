@@ -31,7 +31,7 @@ spec:
       initContainers:
       - name: init-mysql
         image: busybox:1.28
-        command: ['sh', '-c', "until nslookup mysql; do echo waiting for mysql; sleep 2; done"]
+        command: ['sh', '-c', "until nc -z mysql 3306; do echo waiting for mysql; sleep 2; done"]
       containers:
         - name: backend
           image: yashdwar/backend:v2
@@ -51,8 +51,8 @@ spec:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 3
-            periodSeconds: 3
+            initialDelaySeconds: 15
+            periodSeconds: 10
 ---
 kind: Service
 apiVersion: v1
